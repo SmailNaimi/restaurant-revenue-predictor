@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Revenue Prediction</title>
+
+    <!-- Link to Montserrat font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        /*main style*/
+        body {
+            font-family: 'Source Code Pro', monospace;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: #333;
+            position: relative;
+            overflow-x: hidden; /* Empêche le défilement horizontal */
+            width: 100%; /* Définit la largeur de la page */
+        }
+
+        /* Bubble Style */
+        .bubble {
+            position: absolute;
+            background-color: #fca14ccc;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        /* Keyframes for bubble animations */
+        @keyframes float1 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50vw, -50vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float2 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-40vw, 40vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float3 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(40vw, 50vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float4 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-50vw, -40vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float5 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30vw, -30vh); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Fade-in animation for content */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }}
+
+        /* Container for main content */
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 6rem auto 2rem auto;
+            padding: 2rem;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0px 0px 50px rgb(255, 122, 0);
+            text-align: center;
+            position: relative;
+            z-index: 10; /* Ensures form is above the bubbles */
+            animation: fadeIn 1.5s ease-out forwards; /* Apply fade-in animation */
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: calc(100% - 30px); /* Add padding to ensure it does not touch the edges */
+                margin: 60px auto; /* Increase top margin for small screens */ /* Increase top margin for small screens */
+                box-sizing: border-box;
+            }
+        }
+
+        h1 {
+            color: rgb(255, 122, 0);
+            margin-bottom: 1.5rem;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+        /* Navbar Styling */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            gap: 20px;
+            z-index: 1000;
+        }
+        .nav a {
+            color: #ff7a00;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 440;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .nav a:hover {
+            color: #ffffff;
+            text-shadow: 0px 0px 5px #ff7a00;
+        }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: #ff7a00;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                justify-content: space-between;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                z-index: 1000;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hamburger.active {
+                transform: rotate(180deg);
+                color: #ffffff;
+                text-shadow: 0px 0px 10px #ff7a00;
+            }
+        }
+
+        .input-group {
+            text-align: left;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #ddd;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .button {
+            font-family: 'Source Code Pro', monospace;
+            padding: 5px 15px;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #ffffff;
+            width: 100%;
+            background-color: #ff7b00;
+            border: 2px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            animation: slideInUp 2s ease-out forwards;
+        }
+        .button:hover {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+
+        /* Navbar Styling */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            padding: 15px 20px;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        /* Navigation link styling */
+        .nav a {
+            color: #ff7a00;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 440;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        .nav a:hover {
+            color: #ffffff;
+            text-shadow: 0px 0px 5px #ff7a00;
+        }
+
+        /* Modal styling */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1500;
+            visibility: hidden;
+            opacity: 0;
+            transition: visibility 0s, opacity 0.3s ease;
+        }
+        .modal.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-content {
+            width: 90%;
+            max-width: 600px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0px 0px 50px rgb(255, 122, 0);
+            text-align: center;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        .close-button {
+            background-color: #FF7A00;
+            color: white;
+            padding: 10px 15px;
+            border: 2px solid #ff7a00;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .close-button:hover {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+        .info {
+            font-size: 0.85rem; /* Réduit la taille du texte */
+            opacity: 0.6; /* Réduit l'opacité */
+        }
+
+    </style>
+    <script>
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Navbar Links Only -->
+    <div class="nav">
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-menu">
+            <a href="/">Home</a>
+            <a href="About">About</a> <!-- Modified to link to about.html -->
+            <a href="Team">Team</a>
+            <a>API Status</a>
+            <a href="https://github.com/SmailNaimi" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Predict Your Restaurant Revenue</h1>
+
+        <!-- Input fields for each feature -->
+        <div class="input-group">
+            <label>Number of Customers</label>
+            <input type="number" id="Number_of_Customers" placeholder="Enter Number of Customers" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>Menu Price</label>
+            <input type="number" id="Menu_Price" placeholder="Enter Menu Price" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>Marketing Spend</label>
+            <input type="number" id="Marketing_Spend" placeholder="Enter Marketing Spend" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>Cuisine Type <span class="info">(0 = Japanese, 1 = American, 2 = Mexican, 3 = Italian)</span></label>
+            <input type="number" id="Cuisine_Type" placeholder="Enter Cuisine Type" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>Average Customer Spending</label>
+            <input type="number" id="Average_Customer_Spending" placeholder="Enter Average Customer Spending" min="0">
+        </div>
+
+        <div class="input-group">
+            <label>Promotions <span class="info">(0 = No, 1 = Yes)</span></label>
+            <input type="number" id="Promotions" placeholder="Enter 0 or 1 for Promotions" min="0" max="1">
+        </div>
+
+        <div class="input-group">
+            <label>Reviews</label>
+            <input type="number" id="Reviews" placeholder="Enter Reviews"min="0">
+        </div>
+
+        <!-- Predict button -->
+        <button class="button" onclick="getPrediction()">Predict</button>
+
+        <!-- Modal for displaying prediction result -->
+        <div id="predictionModal" class="modal">
+            <div class="modal-content">
+                <h2>Prediction Result</h2>
+                <p id="predictionResult">Loading...</p>
+                <button class="close-button" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to create random bubbles
+        function createBubbles(number) {
+            const animations = ['float1', 'float2', 'float3', 'float4', 'float5'];
+
+            for (let i = 0; i < number; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                const size = Math.floor(Math.random() * 40) + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                // Random position within the viewport
+                const posX = Math.floor(Math.random() * 100);
+                const posY = Math.floor(Math.random() * 100);
+                bubble.style.top = `${posY}vh`;
+                bubble.style.left = `${posX}vw`;
+
+                // Random animation from the list
+                const animation = animations[Math.floor(Math.random() * animations.length)];
+                const duration = Math.floor(Math.random() * 10) + 50;
+                bubble.style.animation = `${animation} ${duration}s infinite ease-in-out`;
+
+                document.body.appendChild(bubble);
+            }
+        }
+
+        // Function to get prediction and show it in the modal
+        async function getPrediction() {
+            const data = {
+                Number_of_Customers: parseFloat(document.getElementById('Number_of_Customers').value),
+                Menu_Price: parseFloat(document.getElementById('Menu_Price').value),
+                Marketing_Spend: parseFloat(document.getElementById('Marketing_Spend').value),
+                Cuisine_Type: parseInt(document.getElementById('Cuisine_Type').value),
+                Average_Customer_Spending: parseFloat(document.getElementById('Average_Customer_Spending').value),
+                Promotions: parseInt(document.getElementById('Promotions').value),
+                Reviews: parseFloat(document.getElementById('Reviews').value)
+            };
+
+            try {
+                const response = await fetch('/predict', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    const result = await response.json();
+                    document.getElementById('predictionResult').innerText = `Predicted Monthly Revenue: $${result.predicted_Monthly_Revenue.toFixed(2)}`;
+                } else {
+                    document.getElementById('predictionResult').innerText = 'Error: Could not fetch prediction.';
+                }
+            } catch (error) {
+                document.getElementById('predictionResult').innerText = `Error: ${error.message}`;
+            }
+
+            document.getElementById('predictionModal').classList.add('active');
+
+            // Clear input fields after clicking predict
+            document.getElementById('Number_of_Customers').value = '';
+            document.getElementById('Menu_Price').value = '';
+            document.getElementById('Marketing_Spend').value = '';
+            document.getElementById('Cuisine_Type').value = '';
+            document.getElementById('Average_Customer_Spending').value = '';
+            document.getElementById('Promotions').value = '';
+            document.getElementById('Reviews').value = '';
+        }
+
+        // Function to close modal
+        function closeModal() {
+            document.getElementById('predictionModal').classList.remove('active');
+        }
+
+        // Create bubbles on page load
+        createBubbles(60);
+    </script>
+</body>
+</html>

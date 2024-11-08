@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Revenue - Home</title>
+
+    <!-- Link to fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Source Code Pro', monospace;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: #333;
+            min-height: 100vh;
+            width: 100vw;
+            overflow-x: hidden;
+        }
+        /* Animation for header and button */
+        h1 {
+            animation: fadeIn 2s ease-out forwards;
+            color: rgb(255, 122, 0);
+            margin-bottom: 1.5rem;
+            font-weight: 900;
+            opacity: 0; /* Initial opacity for fade-in */
+        }
+
+        .description {
+            color: rgb(255, 255, 255);
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-family: 'Roboto Mono';
+            font-weight: 600;
+            font-size: 2rem;
+            color: #ffffff;
+            width: 100%;
+            background-color: #ff7b00;
+            border: 2px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            animation: slideInUp 2s ease-out forwards;
+            opacity: 0; /* Initial opacity for slide-in */
+        }
+
+        .button:hover {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+        /* Bubble Style */
+        .bubble {
+            position: absolute;
+            background-color: #fca14ccc;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        /* Keyframes for different animations */
+        @keyframes float1 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50vw, -50vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float2 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-40vw, 40vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float3 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(40vw, 50vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float4 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-50vw, -40vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float5 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30vw, -30vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; }}
+        @keyframes slideInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }}
+
+        .container {
+            width: 50%;
+            max-width: 500px;
+            padding: 2rem;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0px 0px 50px rgba(255, 122, 0, 0.8);
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                position: relative;
+                top: auto;
+                left: auto;
+                transform: none;
+                margin: 100px auto;
+                box-sizing: border-box;
+            }
+        }
+
+        /* Navbar Styling */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            gap: 20px;
+            z-index: 1000;
+            animation: fadeIn 1.5s ease-out forwards;
+            opacity: 0;
+        }
+        .nav a {
+            color: #ff7a00;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 440;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .nav a:hover {
+            color: #ffffff;
+            text-shadow: 0px 0px 5px #ff7a00;
+        }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: #ff7a00;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                justify-content: space-between;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                z-index: 1000;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hamburger.active {
+                transform: rotate(180deg);
+                color: #ffffff;
+                text-shadow: 0px 0px 10px #ff7a00;
+            }
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar Links Only -->
+    <div class="nav">
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-menu">
+            <a href="/">Home</a>
+            <a href="About">About</a> <!-- Modified to link to about.html -->
+            <a href="Team">Team</a>
+            <a href="/APIhealth">API Status</a>
+            <a href="https://github.com/SmailNaimi" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Welcome to Restaurant Revenue Prediction</h1>
+        <p class="description">This application will help you estimate your restaurant's monthly revenue based on various factors.</p>
+        <button class="button" onclick="goToPredictionPage()">Make a prediction</button>
+    </div>
+    <!-- JavaScript for Bubble Creation and Button Actions -->
+    <script>
+        // Function to create random bubbles
+        function createBubbles(number) {
+            const animations = ['float1', 'float2', 'float3', 'float4', 'float5'];
+
+            for (let i = 0; i < number; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                // Random size between 20px and 100px
+                const size = Math.floor(Math.random() * 40) + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                // Random position within the viewport
+                const posX = Math.floor(Math.random() * 100);
+                const posY = Math.floor(Math.random() * 100);
+                bubble.style.top = `${posY}vh`;
+                bubble.style.left = `${posX}vw`;
+
+                // Random animation from the list
+                const animation = animations[Math.floor(Math.random() * animations.length)];
+                const duration = Math.floor(Math.random() * 10) + 50; // Random duration between 30s and 40s
+                bubble.style.animation = `${animation} ${duration}s infinite ease-in-out`;
+
+                // Append bubble to the body
+                document.body.appendChild(bubble);
+            }
+        }
+
+        // Function to navigate to prediction page
+        function goToPredictionPage() {
+            window.location.href = '/predict';
+        }
+
+        // Create 60 bubbles
+        createBubbles(60);
+    </script>
+</body>
+</html>

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Revenue - About</title>
+
+    <!-- Link to fonts from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0z4pK1VYlFQDm/smZm0Is1U6E2/ZzF54Jg5pyF0O0oZRr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Source Code Pro', monospace;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            background: #333;
+            min-height: 100vh;
+            width: 100%;
+            overflow-x: hidden;
+            position: relative;
+            box-sizing: border-box;
+        }
+        /* Bubble Style */
+        .bubble {
+            position: fixed;
+            background-color: #fca14ccc;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            z-index: -1;
+        }
+
+        /* Keyframes for different animations */
+        @keyframes float1 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50vw, -50vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float2 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-40vw, 40vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float3 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(40vw, 50vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float4 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-50vw, -40vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float5 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30vw, -30vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; }}
+        @keyframes slideInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }}
+
+        h1 {
+            animation: fadeIn 2s ease-out forwards;
+            color: rgb(255, 122, 0);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            opacity: 0; /* Initial opacity for fade-in */
+        }
+        .button {
+            padding: 10px 20px;
+            font-weight: 600;
+            font-size: 2rem;
+            color: #ffffff;
+            width: 100%;
+            background-color: #333;
+            border: 2px solid #ff7a00;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            animation: slideInUp 2s ease-out forwards;
+            opacity: 0; /* Initial opacity for slide-in */
+        }
+
+        .button:hover {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+       /* Navbar Styling */
+       .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            gap: 20px;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .nav a {
+            color: #ff7a00;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 440;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .nav a:hover {
+            color: #ffffff;
+            text-shadow: 0px 0px 5px #ff7a00;
+        }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: #ff7a00;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+        @media (max-width: 768px) {
+            .nav {
+                justify-content: space-between;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: calc(100% - 30px); 
+                padding: 20px;
+                z-index: 1000;
+                box-sizing: border-box;
+                margin: 0 15px;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hamburger.active {
+                transform: rotate(180deg);
+                color: #ffffff;
+                text-shadow: 0px 0px 10px #ff7a00;
+            }
+        }
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 2rem;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0px 0px 50px rgba(255, 122, 0, 0.8);
+            text-align: center;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            opacity: 0;
+        }
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                max-width: 500px;
+                padding: 2rem;
+                margin: 20px auto; 
+                position: relative;
+                top: unset;
+                left: unset;
+                transform: none;
+                box-sizing: border-box;
+            }
+        }
+        @media (max-width: 480px) {
+            .container {
+                width: calc(100% - 30px); 
+                margin: 20px auto;
+            }
+        }
+        .fa-brands {
+            margin-right: 7px;
+        }
+        /* Title styling */
+        .title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 90%;
+            gap: 10px;
+            margin: 20px auto; 
+            padding: 60px 0 0 0;
+            max-width: 1000px; 
+            text-align: center; 
+            animation: fadeIn 1.5s ease-in-out forwards;
+            opacity: 0;
+        }
+        .horizontal-line {
+            flex-grow: 1;
+            height: 1.5px;
+            max-width: 200px; 
+            background-color: #ff7a00;
+        }
+        .title-text {
+            color: #ff7a00;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        /* About Description Styling */
+        .about-description {
+            font-family: 'Roboto Mono', monospace;
+            color: #ffffff;
+            background-color: #333;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            font-size: 1rem;
+            line-height: 1.5;
+            text-align: justify;
+            box-shadow: 0px 0px 20px rgba(255, 122, 0, 0.8);
+            animation: fadeIn 1.5s ease-in-out forwards;
+            opacity: 0;
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+    <!-- Navbar Links Only -->
+    <div class="nav">
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-menu">
+            <a href="/">Home</a>
+            <a href="About">About</a> 
+            <a href="Team">Team</a>
+            <a href="/APIhealth">API Status</a>
+            <a href="https://github.com/SmailNaimi" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <!-- JavaScript for Bubble Creation and Button Actions -->
+    <script>
+        // Function to create random bubbles
+        function createBubbles(number) {
+            const animations = ['float1', 'float2', 'float3', 'float4', 'float5'];
+
+            for (let i = 0; i < number; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                // Random size between 20px and 100px
+                const size = Math.floor(Math.random() * 40) + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                // Random position within the viewport
+                const posX = Math.floor(Math.random() * 100);
+                const posY = Math.floor(Math.random() * 100);
+                bubble.style.top = `${posY}vh`;
+                bubble.style.left = `${posX}vw`;
+
+                // Random animation from the list
+                const animation = animations[Math.floor(Math.random() * animations.length)];
+                const duration = Math.floor(Math.random() * 10) + 50; // Random duration between 30s and 40s
+                bubble.style.animation = `${animation} ${duration}s infinite ease-in-out`;
+
+                // Append bubble to the body
+                document.body.appendChild(bubble);
+            }
+        }
+
+        // Create 60 bubbles
+        createBubbles(60);
+    </script>
+    <!-- JavaScript to add titles dynamically -->
+    <script>
+        function createSectionTitle(text) {
+            const titleContainer = document.createElement('div');
+            titleContainer.classList.add('title-container');
+
+            const lineLeft = document.createElement('div');
+            lineLeft.classList.add('horizontal-line');
+
+            const titleText = document.createElement('div');
+            titleText.classList.add('title-text');
+            titleText.textContent = text;
+
+            const lineRight = document.createElement('div');
+            lineRight.classList.add('horizontal-line');
+
+            titleContainer.appendChild(lineLeft);
+            titleContainer.appendChild(titleText);
+            titleContainer.appendChild(lineRight);
+
+            document.body.appendChild(titleContainer);
+        }
+
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            createSectionTitle("About This Application");
+            const aboutDescription = document.createElement('div');
+            aboutDescription.classList.add('about-description');
+            aboutDescription.textContent = "Welcome to our Restaurant Revenue Prediction tool! This application harnesses the power of machine learning to help restaurant owners, managers, and analysts forecast monthly revenue with precision. Designed specifically for the unique dynamics of the restaurant industry, our tool provides actionable insights, empowering users to make data-driven decisions that enhance profitability and operational efficiency.";
+            document.body.appendChild(aboutDescription);
+            createSectionTitle("How It Works");
+            const howItWorksDescription = document.createElement('div');
+            howItWorksDescription.classList.add('about-description');
+            howItWorksDescription.innerHTML = `
+                <p>Our predictive model is built using <strong>linear regression</strong>, a well-established statistical method that identifies relationships between various operational factors and revenue outcomes. Here's a breakdown of the core components:</p>
+                <ul>
+                    <li><strong>Data Collection and Analysis:</strong> We've trained the model on a comprehensive dataset of restaurant metrics, carefully curated to include a wide range of factors that impact revenue.</li>
+                    <li><strong>Feature Selection:</strong> Important features such as <strong>Number of Customers</strong>, <strong>Menu Pricing</strong>, <strong>Marketing Spend</strong>, <strong>Cuisine Type</strong>, <strong>Average Customer Spending</strong>, <strong>Promotions</strong>, and <strong>Reviews</strong> were identified and optimized to capture the dynamics that affect monthly income.</li>
+                    <li><strong>Data Preprocessing:</strong> The application cleans, scales, and preprocesses data inputs to ensure that all numerical values and categorical variables are standardized for accurate predictions.</li>
+                    <li><strong>Model Training and Validation:</strong> The model was rigorously trained and validated to ensure its reliability, achieving robust performance metrics like <strong>R-squared</strong> and <strong>RMSE (Root Mean Square Error)</strong> scores that confirm its predictive accuracy on both training and test datasets.</li>
+                </ul>`;
+            howItWorksDescription.style.textAlign = 'justify';
+            document.body.appendChild(howItWorksDescription);
+            createSectionTitle("Why Use This Application?");
+            const whyUseDescription = document.createElement('div');
+            whyUseDescription.classList.add('about-description');
+            whyUseDescription.innerHTML = `
+                <p>Our tool goes beyond simple revenue prediction by offering valuable insights into how each business decision impacts potential income. This empowers restaurant owners to make informed adjustments to their strategies, optimize marketing efforts, and even explore new pricing models.</p>
+                <p>Some practical use cases include:</p>
+                <ul>
+                    <li><strong>Marketing Strategy Optimization:</strong> By analyzing how different levels of marketing spend impact revenue, users can determine the most cost-effective marketing budgets.</li>
+                    <li><strong>Pricing Strategy Development:</strong> Understanding the relationship between menu prices and revenue helps managers balance customer satisfaction with profitability.</li>
+                    <li><strong>Customer Retention and Engagement:</strong> By incorporating review scores, users gain insight into how customer satisfaction influences revenue, highlighting areas for improvement.</li>
+                    <li><strong>Promotion Evaluation:</strong> Track how seasonal promotions or discounts impact revenue to decide on the most effective promotional strategies.</li>
+                </ul>`;
+            whyUseDescription.style.textAlign = 'justify';
+            document.body.appendChild(whyUseDescription);
+            createSectionTitle("Our Model in Action");
+            const modelInActionDescription = document.createElement('div');
+            modelInActionDescription.classList.add('about-description');
+            modelInActionDescription.innerHTML = `
+                <p>For every prediction, the application analyzes your inputs, scales and processes the data, and generates an estimated monthly revenue based on the model's learned patterns. This process gives you an instant forecast, helping you to test different scenarios and explore "what-if" analyses in real-time.</p>`;
+            modelInActionDescription.style.textAlign = 'justify';
+            document.body.appendChild(modelInActionDescription);
+            createSectionTitle("Perfect for Restaurants");
+            const builtWithCareDescription = document.createElement('div');
+            builtWithCareDescription.classList.add('about-description');
+            builtWithCareDescription.innerHTML = `
+                <p>Developed using Python, Flask, and machine learning libraries, our application combines user-friendly design with rigorous data science practices. Whether you're a small independent café or part of a larger restaurant chain, this tool is tailored to support your growth by providing you with a deep understanding of the factors that influence your revenue.</p>`;
+            builtWithCareDescription.style.textAlign = 'justify';
+            document.body.appendChild(builtWithCareDescription);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Revenue - Home</title>
+
+    <!-- Link to Montserrat font from Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Source Code Pro', monospace;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Bubble Style */
+        .bubble {
+            position: absolute;
+            background-color: #fca14ccc;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+        }
+
+        /* Keyframes for different animations */
+        @keyframes float1 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(50vw, -50vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float2 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-40vw, 40vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float3 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(40vw, 50vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float4 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(-50vw, -40vh); }
+            100% { transform: translate(0, 0); }
+        }
+        @keyframes float5 {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(30vw, -30vh); }
+            100% { transform: translate(0, 0); }
+        }
+
+        /* Fade-in animation for main content */
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }}
+
+        /* Container for main content */
+        .container {
+            width: 50%;
+            max-width: 500px;
+            padding: 2rem;
+            background: #333;
+            border-radius: 10px;
+            box-shadow: 0px 0px 50px rgba(255, 122, 0, 0.8);
+            text-align: center;
+            z-index: 1;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        h1 {
+            color: rgb(255, 122, 0);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+        .button {
+            padding: 10px 20px;
+            font-family: 'Roboto Mono';
+            font-weight: 600;
+            font-size: 2rem;
+            color: #ffffff;
+            width: 100%;
+            background-color: #ff7b00;
+            border: 2px solid #333;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+            animation: slideInUp 2s ease-out forwards;
+            opacity: 0; /* Initial opacity for slide-in */
+        }
+        .button:hover {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+
+        /* Navbar Styling */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 20px;
+            gap: 20px;
+            z-index: 1000;
+        }
+        .nav a {
+            color: #ff7a00;
+            font-size: 1.2rem;
+            text-decoration: none;
+            font-weight: 440;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+        .nav a:hover {
+            color: #ffffff;
+            text-shadow: 0px 0px 5px #ff7a00;
+        }
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            color: #ff7a00;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .nav {
+                justify-content: space-between;
+            }
+            .nav-menu {
+                display: none;
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                padding: 20px;
+                z-index: 1000;
+            }
+            .nav-menu.active {
+                display: flex;
+            }
+            .hamburger {
+                display: block;
+            }
+            .hamburger.active {
+                transform: rotate(180deg);
+                color: #ffffff;
+                text-shadow: 0px 0px 10px #ff7a00;
+            }
+        }
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            width: 80%;
+            max-width: 400px;
+        }
+        .close-button {
+            background-color: #FF7A00;
+            color: white;
+            padding: 10px 15px;
+            border: 2px solid #ff7a00;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin-top: 10px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .close-button:hover {
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
+        }
+    </style>
+    <script>
+        function toggleMenu() {
+            const navMenu = document.querySelector('.nav-menu');
+            const hamburger = document.querySelector('.hamburger');
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- Navbar Links Only -->
+    <div class="nav">
+        <div class="hamburger" onclick="toggleMenu()">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-menu">
+            <a href="/">Home</a>
+            <a href="About">About</a> <!-- Modified to link to about.html -->
+            <a href="Team">Team</a>
+            <a>API Status</a>
+            <a href="https://github.com/SmailNaimi" target="_blank">GitHub</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Click to check API status</h1>
+        <button class="button" onclick="checkAPIStatus()">Check</button>
+    </div>
+
+    <!-- Modal for displaying API status result -->
+    <div id="statusModal" class="modal">
+        <div class="modal-content">
+            <h2>API Status</h2>
+            <p id="statusMessage">Checking...</p>
+            <button class="close-button" onclick="closeModal()">Close</button>
+        </div>
+    </div>
+
+    <!-- JavaScript for Bubble Creation and Button Actions -->
+    <script>
+        // Function to create random bubbles
+        function createBubbles(number) {
+            const animations = ['float1', 'float2', 'float3', 'float4', 'float5'];
+
+            for (let i = 0; i < number; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                const size = Math.floor(Math.random() * 40) + 20;
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+
+                const posX = Math.floor(Math.random() * 100);
+                const posY = Math.floor(Math.random() * 100);
+                bubble.style.top = `${posY}vh`;
+                bubble.style.left = `${posX}vw`;
+
+                const animation = animations[Math.floor(Math.random() * animations.length)];
+                const duration = Math.floor(Math.random() * 10) + 50;
+                bubble.style.animation = `${animation} ${duration}s infinite ease-in-out`;
+
+                document.body.appendChild(bubble);
+            }
+        }
+
+        // Function to check API status
+        async function checkAPIStatus() {
+            try {
+                const response = await fetch('/check_status');
+                const result = await response.json();
+                document.getElementById('statusMessage').innerText = result.status;
+                showModal();
+            } catch (error) {
+                document.getElementById('statusMessage').innerText = 'Error: Unable to fetch API status';
+                showModal();
+            }
+        }
+
+        // Functions to open and close the modal
+        function showModal() {
+            document.getElementById('statusModal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('statusModal').classList.remove('active');
+        }
+
+        // Create 60 bubbles
+        createBubbles(60);
+    </script>
+</body>
+</html>
