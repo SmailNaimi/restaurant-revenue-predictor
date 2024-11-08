@@ -28,7 +28,14 @@ The Restaurant Revenue Prediction Application is designed to assist restaurant o
 
 1. **Python 3.x**: Ensure Python is installed. You can verify this by running `python --version`.
 2. **Docker**: For containerized deployment, Docker must be installed and running.
-3. **Virtual environment** (optional but recommended): Helps to manage dependencies.
+
+
+- ![Python Logo](https://path-to-python-logo.png) **Python 3.x**: Ensure Python is installed. You can verify this by running `python --version`.
+- ![Flask Logo](https://path-to-flask-logo.png) **Flask**: The web framework used for building the web application.
+- ![Docker Logo](https://path-to-docker-logo.png) **Docker**: For containerized deployment, Docker must be installed and running.
+- 3. **Virtual environment** (optional but recommended): Helps to manage dependencies.
+
+
 
 ## 📁 Project Structure
 
