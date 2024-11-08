@@ -37,12 +37,12 @@ The Restaurant Revenue Prediction Application is designed to assist restaurant o
 - **`requirements.txt`**: Lists all dependencies required for the application.
 - **`Dockerfile`**: Instructions to build a Docker image for the application.
 - **HTML Files**:
-  - **`home.html`**: 🏠 The homepage of the application that provides general information.
+  - **`home.html`**: 🏠 The homepage of the application that provides a start button.
   - **`about.html`**: ℹ️ About page explaining the purpose and benefits of the project.
   - **`predict.html`**: 📊 A page where users can input data for revenue prediction.
   - **`team.html`**: 👥 Information about the team members behind the project.
   - **`APIstatus.html`**: ✅ Displays the status of the API and model health.
-- **`static/`**: Directory containing static files like CSS, JavaScript, and images.
+- **`static/`**: Directory containing static files like images.
 - **`templates/`**: Directory containing HTML templates for rendering web pages.
 - **`model.pkl`**: Serialized version of the trained machine learning model.
 - **`scaler.pkl`**: Serialized data scaler used for preprocessing inputs.
@@ -52,7 +52,7 @@ The Restaurant Revenue Prediction Application is designed to assist restaurant o
 1. **Clone the Repository**  
    Clone this repository to your local machine using the command:
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/SmailNaimi/restaurant-revenue-predictor
    cd RestaurantRevenuePrediction
    ```
 
@@ -60,7 +60,7 @@ The Restaurant Revenue Prediction Application is designed to assist restaurant o
    Creating a virtual environment is recommended to manage dependencies without polluting the global Python environment.
    ```bash
    python3 -m venv env
-   source env/bin/activate  # On Windows, use `env\Scripts\activate`
+   source env/bin/activate  #On Windows, use `env\Scripts\activate`
    ```
 
 3. **Install Dependencies**  
@@ -94,11 +94,11 @@ By default, the application will be accessible at [http://127.0.0.1:5000](http:/
 **2. API Testing**: Use tools like `Postman` or `cURL` to test the API endpoints. You can send a POST request to `/predict` with the following JSON payload:
 ```json
 {
-    "Number_of_Customers": 100,
-    "Menu_Price": 20.0,
-    "Marketing_Spend": 500.0,
+    "Number_of_Customers": 400,
+    "Menu_Price": 90.0,
+    "Marketing_Spend": 5000.0,
     "Cuisine_Type": 1,
-    "Average_Customer_Spending": 30.0,
+    "Average_Customer_Spending": 70.0,
     "Promotions": 1,
     "Reviews": 10
 }
@@ -170,11 +170,8 @@ During training, the data was preprocessed to handle categorical values, and num
 - **Port Conflicts**: Ensure port 5000 is not being used by another service.
 - **Data Format Errors**: Make sure all input fields are properly filled and are in the expected format.
 
-## 📜 License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
 ## 📞 Contact
 
-For further queries, please refer to the [Team](http://localhost:5000/Team) page or reach out via the contact form on the site. You can also find us on GitHub or LinkedIn using the links provided on the Team page. 🤝
+For further queries, please contact me at [Link](https://www.linkedin.com/in/ismail-naimi-3a0a082b4/). 🤝
 
