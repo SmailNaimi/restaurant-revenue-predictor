@@ -1,4 +1,4 @@
 Name: smail
 Email: phobbi74@gmail.com
-Message: hyrteqrd x
+Message: this is a test for contact-form
 ----------------------------------------
