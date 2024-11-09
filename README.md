@@ -3,7 +3,7 @@
 This application predicts monthly revenue for restaurants based on various inputs, such as customer numbers, menu pricing, marketing spend, and customer reviews. 🚀 The application is powered by a machine learning model, which is deployed as a web service using Flask. This README provides detailed instructions on setting up, running, and testing the application, as well as an explanation of its API endpoints.
 
 ## 📋 Table of Contents
-- [📖 Overview](#-overview)
+- [📚 Overview](#-overview)
 - [🔧 Prerequisites](#-prerequisites)
 - [📁 Project Structure](#-project-structure)
 - [⚙️ Setup and Installation](#%EF%B8%8F-setup-and-installation)
@@ -13,16 +13,17 @@ This application predicts monthly revenue for restaurants based on various input
   - [3. Testing the Application](#testing-the-application)
   - [4. Containerized Deployment with Docker](#containerized-deployment-with-docker)
   - [5. Environment Variables](#environment-variables)
+  - [6. Google Cloud Platform Deployment](#google-cloud-platform-deployment)
 - [🔌 API Endpoints](#-api-endpoints)
 - [🔄 Data Flow Explanation](#-data-flow-explanation)
-- [🧠 Model Explanation](#-model-explanation)
+- [🧐 Model Explanation](#-model-explanation)
 - [🛠️ Troubleshooting](#%EF%B8%8F-troubleshooting)
 - [📜 License](#-license)
 - [📞 Contact](#-contact)
 
-## 📖 Overview
+## 📚 Overview
 
-The Restaurant Revenue Prediction Application is designed to assist restaurant owners in forecasting their monthly revenue by providing predictions based on several factors including the number of customers, menu pricing, marketing spend, and more. 📊 The machine learning model used in this application is a linear regression model, trained on sample restaurant data to understand the relationship between these factors and monthly revenue. This tool allows users to make data-driven decisions to optimize their restaurant's profitability.
+The Restaurant Revenue Prediction Application is designed to assist restaurant owners in forecasting their monthly revenue by providing predictions based on several factors including the number of customers, menu pricing, marketing spend, and more. 📈 The machine learning model used in this application is a linear regression model, trained on sample restaurant data to understand the relationship between these factors and monthly revenue. This tool allows users to make data-driven decisions to optimize their restaurant's profitability.
 
 ## 🔧 Prerequisites
 
@@ -39,7 +40,7 @@ The Restaurant Revenue Prediction Application is designed to assist restaurant o
 - **HTML Files**:
   - **`home.html`**: 🏠 The homepage of the application that provides a start button.
   - **`about.html`**: ℹ️ About page explaining the purpose and benefits of the project.
-  - **`predict.html`**: 📊 A page where users can input data for revenue prediction.
+  - **`predict.html`**: 📈 A page where users can input data for revenue prediction.
   - **`team.html`**: 👥 Information about the team members behind the project.
   - **`APIstatus.html`**: ✅ Displays the status of the API and model health.
 - **`static/`**: Directory containing static files like images.
@@ -132,6 +133,50 @@ If your application requires environment variables, you can specify them in a `.
 docker run --env-file .env -p 5000:5000 restaurant-revenue-app
 ```
 
+### 6. Google Cloud Platform Deployment
+
+To deploy this application on Google Cloud Platform (GCP) using Container Registry and Cloud Run, follow these steps:
+
+1. **Set up Google Cloud CLI**  
+   Install and initialize the Google Cloud CLI if you haven't already:
+   ```bash
+   gcloud init
+   ```
+   Log in and set the correct project:
+   ```bash
+   gcloud auth login
+   gcloud config set project [PROJECT_ID]
+   ```
+   Replace `[PROJECT_ID]` with your Google Cloud project ID.
+
+2. **Enable Required APIs**  
+   Enable the Container Registry and Cloud Run APIs:
+   ```bash
+   gcloud services enable containerregistry.googleapis.com
+   gcloud services enable run.googleapis.com
+   ```
+
+3. **Tag and Push the Docker Image to GCP**  
+   Tag the Docker image for Google Container Registry:
+   ```bash
+   docker tag restaurant-revenue-app gcr.io/[PROJECT_ID]/restaurant-revenue-app
+   ```
+   Push the image to Google Container Registry:
+   ```bash
+   docker push gcr.io/[PROJECT_ID]/restaurant-revenue-app
+   ```
+   Replace `[PROJECT_ID]` with your Google Cloud project ID.
+
+4. **Deploy to Cloud Run**  
+   Deploy the image from Container Registry to Cloud Run:
+   ```bash
+   gcloud run deploy restaurant-revenue-app --image gcr.io/[PROJECT_ID]/restaurant-revenue-app --platform managed --region [REGION] --allow-unauthenticated
+   ```
+   Replace `[PROJECT_ID]` and `[REGION]` accordingly. The `--allow-unauthenticated` flag makes the service public.
+
+5. **Get the Public URL**  
+   After deployment, Google Cloud will provide a URL where your application is accessible publicly.
+
 ## 🔌 API Endpoints
 
 - **`GET /`**: Renders the home page (`home.html`).
@@ -149,7 +194,7 @@ docker run --env-file .env -p 5000:5000 restaurant-revenue-app
 3. **Model Prediction** 🤖: The preprocessed data is fed into the trained model (`model.pkl`) to generate a revenue prediction.
 4. **Output** 📈: The predicted revenue is returned to the user in JSON format or displayed on the web page.
 
-## 🧠 Model Explanation
+## 🧐 Model Explanation
 
 The machine learning model used in this application is a **Linear Regression** model, which is ideal for predicting continuous numerical values. 📉 The model was trained on features such as:
 - **Number of Customers**: The estimated number of customers visiting the restaurant.
