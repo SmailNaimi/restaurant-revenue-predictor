@@ -1,5 +1,8 @@
 # 🌟 Restaurant Revenue Prediction Application
+<<<<<<< HEAD
 [Live Application](https://restaurant-revenue-prediction-155985849716.europe-west6.run.app)
+=======
+>>>>>>> 6b5eb6c8f696e21ac98b71dd913b305c960a600f
 
 This application predicts monthly revenue for restaurants based on various inputs, such as customer numbers, menu pricing, marketing spend, and customer reviews. 🚀 The application is powered by a machine learning model, which is deployed as a web service using Flask. This README provides detailed instructions on setting up, running, and testing the application, as well as an explanation of its API endpoints.
 
