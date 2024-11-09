@@ -4,14 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Revenue - About</title>
-
+    <!-- Logo favicon -->
+    <link rel="icon" href="static/logo.png" type="image/x-icon">
     <!-- Link to fonts from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha384-k6RqeWeci5ZR/Lv4MR0z4pK1VYlFQDm/smZm0Is1U6E2/ZzF54Jg5pyF0O0oZRr2" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+        /* Base styles for body */
         body {
             font-family: 'Source Code Pro', monospace;
             color: #ffffff;
@@ -24,7 +27,7 @@
             position: relative;
             box-sizing: border-box;
         }
-        /* Bubble Style */
+        /* Bubble style for background animation */
         .bubble {
             position: fixed;
             background-color: #fca14ccc;
@@ -35,7 +38,7 @@
             z-index: -1;
         }
 
-        /* Keyframes for different animations */
+        /* Keyframes for different bubble animations */
         @keyframes float1 {
             0% { transform: translate(0, 0); }
             50% { transform: translate(50vw, -50vh); }
@@ -64,13 +67,15 @@
         @keyframes fadeIn { 0% { opacity: 0; } 100% { opacity: 1; }}
         @keyframes slideInUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); }}
 
+        /* Header styles */
         h1 {
             animation: fadeIn 2s ease-out forwards;
             color: rgb(255, 122, 0);
             margin-bottom: 1.5rem;
             font-weight: 700;
-            opacity: 0; /* Initial opacity for fade-in */
+            opacity: 0; /* Initial opacity for fade-in animation */
         }
+        /* Button styling */
         .button {
             padding: 10px 20px;
             font-weight: 600;
@@ -83,14 +88,15 @@
             cursor: pointer;
             transition: background-color 0.3s, color 0.3s;
             animation: slideInUp 2s ease-out forwards;
-            opacity: 0; /* Initial opacity for slide-in */
+            opacity: 0; /* Initial opacity for slide-in animation */
         }
 
+        /* Hover effect for button */
         .button:hover {
             background-color: #ffffff;
             color: rgb(0, 0, 0);
         }
-       /* Navbar Styling */
+       /* Navbar styling */
        .nav {
             position: fixed;
             top: 0;
@@ -103,6 +109,7 @@
             z-index: 1000;
             box-sizing: border-box;
         }
+        /* Navbar link styling */
         .nav a {
             color: #ff7a00;
             font-size: 1.2rem;
@@ -113,11 +120,12 @@
             cursor: pointer;
             transition: color 0.3s, text-shadow 0.3s;
         }
+        /* Navbar link hover effect */
         .nav a:hover {
             color: #ffffff;
             text-shadow: 0px 0px 5px #ff7a00;
         }
-        /* Hamburger Menu */
+        /* Hamburger menu for mobile view */
         .hamburger {
             display: none;
             font-size: 2rem;
@@ -125,14 +133,17 @@
             cursor: pointer;
             transition: transform 0.3s ease;
         }
+        /* Navbar menu links */
         .nav-menu {
             display: flex;
             gap: 20px;
         }
+        /* Responsive styles for screen widths <= 768px */
         @media (max-width: 768px) {
             .nav {
                 justify-content: space-between;
             }
+            /* Hidden by default, shown when active */
             .nav-menu {
                 display: none;
                 flex-direction: column;
@@ -146,6 +157,7 @@
                 box-sizing: border-box;
                 margin: 0 15px;
             }
+            /* Menu active state for mobile view */
             .nav-menu.active {
                 display: flex;
             }
@@ -158,6 +170,7 @@
                 text-shadow: 0px 0px 10px #ff7a00;
             }
         }
+        /* Container for main content */
         .container {
             width: 90%;
             max-width: 500px;
@@ -174,6 +187,7 @@
             animation: fadeIn 1.5s ease-in-out forwards;
             opacity: 0;
         }
+        /* Responsive styles for container on smaller devices */
         @media (max-width: 768px) {
             .container {
                 width: 90%;
@@ -193,10 +207,11 @@
                 margin: 20px auto;
             }
         }
+        /* Margin for FontAwesome brand icons */
         .fa-brands {
             margin-right: 7px;
         }
-        /* Title styling */
+        /* Title container styling */
         .title-container {
             display: flex;
             align-items: center;
@@ -210,12 +225,14 @@
             animation: fadeIn 1.5s ease-in-out forwards;
             opacity: 0;
         }
+        /* Horizontal line styling for title */
         .horizontal-line {
             flex-grow: 1;
             height: 1.5px;
             max-width: 200px; 
             background-color: #ff7a00;
         }
+        /* Title text styling */
         .title-text {
             color: #ff7a00;
             font-size: 1.2rem;
@@ -223,7 +240,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        /* About Description Styling */
+        /* About description styling */
         .about-description {
             font-family: 'Roboto Mono', monospace;
             color: #ffffff;
@@ -242,6 +259,7 @@
         }
     </style>
     <script>
+        // Function to toggle menu for mobile view
         function toggleMenu() {
             const navMenu = document.querySelector('.nav-menu');
             const hamburger = document.querySelector('.hamburger');
@@ -261,13 +279,13 @@
             <a href="About">About</a> 
             <a href="Team">Team</a>
             <a href="/APIhealth">API Status</a>
-            <a href="https://github.com/SmailNaimi" target="_blank">GitHub</a>
+            <a href="https://github.com/SmailNaimi/restaurant-revenue-predictor" target="_blank">GitHub</a>
         </div>
     </div>
 
     <!-- JavaScript for Bubble Creation and Button Actions -->
     <script>
-        // Function to create random bubbles
+        // Function to create random bubbles for animated background
         function createBubbles(number) {
             const animations = ['float1', 'float2', 'float3', 'float4', 'float5'];
 
@@ -322,7 +340,7 @@
             document.body.appendChild(titleContainer);
         }
 
-        
+        // Event listener to create section titles and descriptions dynamically after DOM content is loaded
         document.addEventListener('DOMContentLoaded', () => {
             createSectionTitle("About This Application");
             const aboutDescription = document.createElement('div');

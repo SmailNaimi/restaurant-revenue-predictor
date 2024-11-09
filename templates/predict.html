@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Restaurant Revenue Prediction</title>
+    <!-- Logo favicon -->
+    <link rel="icon" href="static/logo.png" type="image/x-icon">
 
-    <!-- Link to Montserrat font from Google Fonts -->
+    <!-- Link to fonts from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
     <!-- Link to Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /*main style*/
+        /* Main style for body */
         body {
             font-family: 'Source Code Pro', monospace;
             color: #333;
@@ -20,11 +22,11 @@
             padding: 0;
             background: #333;
             position: relative;
-            overflow-x: hidden; /* Empêche le défilement horizontal */
-            width: 100%; /* Définit la largeur de la page */
+            overflow-x: hidden;
+            width: 100%;
         }
 
-        /* Bubble Style */
+        /* Bubble style for animated background */
         .bubble {
             position: absolute;
             background-color: #fca14ccc;
@@ -79,14 +81,14 @@
             box-shadow: 0px 0px 50px rgb(255, 122, 0);
             text-align: center;
             position: relative;
-            z-index: 10; /* Ensures form is above the bubbles */
-            animation: fadeIn 1.5s ease-out forwards; /* Apply fade-in animation */
+            z-index: 10;
+            animation: fadeIn 1.5s ease-out forwards;
         }
 
         @media (max-width: 768px) {
             .container {
-                width: calc(100% - 30px); /* Add padding to ensure it does not touch the edges */
-                margin: 60px auto; /* Increase top margin for small screens */ /* Increase top margin for small screens */
+                width: calc(100% - 30px);
+                margin: 60px auto;
                 box-sizing: border-box;
             }
         }
@@ -96,7 +98,8 @@
             margin-bottom: 1.5rem;
             animation: fadeIn 1.5s ease-out forwards;
         }
-        /* Navbar Styling */
+
+        /* Navbar styling */
         .nav {
             position: fixed;
             top: 0;
@@ -122,7 +125,7 @@
             color: #ffffff;
             text-shadow: 0px 0px 5px #ff7a00;
         }
-        /* Hamburger Menu */
+        /* Hamburger menu for mobile view */
         .hamburger {
             display: none;
             font-size: 2rem;
@@ -203,37 +206,7 @@
             color: rgb(0, 0, 0);
         }
 
-        /* Navbar Styling */
-        .nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            display: flex;
-            justify-content: flex-start;
-            padding: 15px 20px;
-            gap: 20px;
-            z-index: 1000;
-        }
-
-        /* Navigation link styling */
-        .nav a {
-            color: #ff7a00;
-            font-size: 1.2rem;
-            text-decoration: none;
-            font-weight: 440;
-            padding: 5px 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: color 0.3s, text-shadow 0.3s;
-        }
-
-        .nav a:hover {
-            color: #ffffff;
-            text-shadow: 0px 0px 5px #ff7a00;
-        }
-
-        /* Modal styling */
+        /* Modal styling for prediction result */
         .modal {
             position: fixed;
             top: 0;
@@ -281,10 +254,9 @@
             color: rgb(0, 0, 0);
         }
         .info {
-            font-size: 0.85rem; /* Réduit la taille du texte */
-            opacity: 0.6; /* Réduit l'opacité */
+            font-size: 0.85rem;
+            opacity: 0.6;
         }
-
     </style>
     <script>
         function toggleMenu() {
@@ -296,21 +268,21 @@
     </script>
 </head>
 <body>
-
-    <!-- Navbar Links Only -->
+    <!-- Navbar with links -->
     <div class="nav">
         <div class="hamburger" onclick="toggleMenu()">
             <i class="fas fa-bars"></i>
         </div>
         <div class="nav-menu">
             <a href="/">Home</a>
-            <a href="About">About</a> <!-- Modified to link to about.html -->
+            <a href="About">About</a> <!-- Link to about page -->
             <a href="Team">Team</a>
             <a>API Status</a>
-            <a href="https://github.com/SmailNaimi" target="_blank">GitHub</a>
+            <a href="https://github.com/SmailNaimi/restaurant-revenue-predictor" target="_blank">GitHub</a>
         </div>
     </div>
 
+    <!-- Main container with content -->
     <div class="container">
         <h1>Predict Your Restaurant Revenue</h1>
 
@@ -347,7 +319,7 @@
 
         <div class="input-group">
             <label>Reviews</label>
-            <input type="number" id="Reviews" placeholder="Enter Reviews"min="0">
+            <input type="number" id="Reviews" placeholder="Enter Reviews" min="0">
         </div>
 
         <!-- Predict button -->
@@ -364,7 +336,7 @@
     </div>
 
     <script>
-        // Function to create random bubbles
+        // Function to create random bubbles for background animation
         function createBubbles(number) {
             const animations = ['float1', 'float2', 'float3', 'float4', 'float5'];
 

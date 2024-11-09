@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Revenue - Home</title>
+    <title>Restaurant Revenue - APIstatus</title>
+    <!-- Logo favicon -->
+    <link rel="icon" href="static/logo.png" type="image/x-icon">
 
     <!-- Link to Montserrat font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
@@ -13,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+        /* Base styles for body */
         body {
             font-family: 'Source Code Pro', monospace;
             color: #333;
@@ -27,7 +30,7 @@
             position: relative;
         }
 
-        /* Bubble Style */
+        /* Bubble style for background animation */
         .bubble {
             position: absolute;
             background-color: #fca14ccc;
@@ -37,7 +40,7 @@
             animation-iteration-count: infinite;
         }
 
-        /* Keyframes for different animations */
+        /* Keyframes for different bubble animations */
         @keyframes float1 {
             0% { transform: translate(0, 0); }
             50% { transform: translate(50vw, -50vh); }
@@ -84,11 +87,13 @@
             animation: fadeIn 1.5s ease-out forwards;
         }
 
+        /* Header styling */
         h1 {
             color: rgb(255, 122, 0);
             margin-bottom: 1.5rem;
             font-weight: 700;
         }
+        /* Button styling */
         .button {
             padding: 10px 20px;
             font-family: 'Roboto Mono';
@@ -104,12 +109,13 @@
             animation: slideInUp 2s ease-out forwards;
             opacity: 0; /* Initial opacity for slide-in */
         }
+        /* Button hover effect */
         .button:hover {
             background-color: #ffffff;
             color: rgb(0, 0, 0);
         }
 
-        /* Navbar Styling */
+        /* Navbar styling */
         .nav {
             position: fixed;
             top: 0;
@@ -121,6 +127,7 @@
             gap: 20px;
             z-index: 1000;
         }
+        /* Navbar link styling */
         .nav a {
             color: #ff7a00;
             font-size: 1.2rem;
@@ -131,11 +138,12 @@
             cursor: pointer;
             transition: color 0.3s, text-shadow 0.3s;
         }
+        /* Navbar link hover effect */
         .nav a:hover {
             color: #ffffff;
             text-shadow: 0px 0px 5px #ff7a00;
         }
-        /* Hamburger Menu */
+        /* Hamburger menu for mobile view */
         .hamburger {
             display: none;
             font-size: 2rem;
@@ -143,15 +151,18 @@
             cursor: pointer;
             transition: transform 0.3s ease;
         }
+        /* Navbar menu links */
         .nav-menu {
             display: flex;
             gap: 20px;
         }
 
+        /* Responsive styles for screen widths <= 768px */
         @media (max-width: 768px) {
             .nav {
                 justify-content: space-between;
             }
+            /* Hidden by default, shown when active */
             .nav-menu {
                 display: none;
                 flex-direction: column;
@@ -163,6 +174,7 @@
                 padding: 20px;
                 z-index: 1000;
             }
+            /* Menu active state for mobile view */
             .nav-menu.active {
                 display: flex;
             }
@@ -175,7 +187,7 @@
                 text-shadow: 0px 0px 10px #ff7a00;
             }
         }
-        /* Modal Styling */
+        /* Modal styling for API status */
         .modal {
             display: none;
             position: fixed;
@@ -188,9 +200,11 @@
             align-items: center;
             z-index: 10;
         }
+        /* Modal active state styling */
         .modal.active {
             display: flex;
         }
+        /* Content styling for modal */
         .modal-content {
             background: #fff;
             padding: 20px;
@@ -199,6 +213,7 @@
             width: 80%;
             max-width: 400px;
         }
+        /* Close button styling for modal */
         .close-button {
             background-color: #FF7A00;
             color: white;
@@ -210,12 +225,14 @@
             margin-top: 10px;
             transition: background-color 0.3s, color 0.3s;
         }
+        /* Hover effect for close button */
         .close-button:hover {
             background-color: #ffffff;
             color: rgb(0, 0, 0);
         }
     </style>
     <script>
+        // Function to toggle the menu for mobile view
         function toggleMenu() {
             const navMenu = document.querySelector('.nav-menu');
             const hamburger = document.querySelector('.hamburger');
@@ -233,13 +250,14 @@
         </div>
         <div class="nav-menu">
             <a href="/">Home</a>
-            <a href="About">About</a> <!-- Modified to link to about.html -->
+            <a href="About">About</a> <!-- Link to the About page -->
             <a href="Team">Team</a>
             <a>API Status</a>
-            <a href="https://github.com/SmailNaimi" target="_blank">GitHub</a>
+            <a href="https://github.com/SmailNaimi/restaurant-revenue-predictor" target="_blank">GitHub</a>
         </div>
     </div>
 
+    <!-- Main container with content -->
     <div class="container">
         <h1>Click to check API status</h1>
         <button class="button" onclick="checkAPIStatus()">Check</button>
@@ -256,7 +274,7 @@
 
     <!-- JavaScript for Bubble Creation and Button Actions -->
     <script>
-        // Function to create random bubbles
+        // Function to create random bubbles for background animation
         function createBubbles(number) {
             const animations = ['float1', 'float2', 'float3', 'float4', 'float5'];
 
@@ -264,19 +282,23 @@
                 const bubble = document.createElement('div');
                 bubble.classList.add('bubble');
 
+                // Random size between 20px and 100px
                 const size = Math.floor(Math.random() * 40) + 20;
                 bubble.style.width = `${size}px`;
                 bubble.style.height = `${size}px`;
 
+                // Random position within the viewport
                 const posX = Math.floor(Math.random() * 100);
                 const posY = Math.floor(Math.random() * 100);
                 bubble.style.top = `${posY}vh`;
                 bubble.style.left = `${posX}vw`;
 
+                // Random animation from the list
                 const animation = animations[Math.floor(Math.random() * animations.length)];
-                const duration = Math.floor(Math.random() * 10) + 50;
+                const duration = Math.floor(Math.random() * 10) + 50; // Random duration between 30s and 40s
                 bubble.style.animation = `${animation} ${duration}s infinite ease-in-out`;
 
+                // Append bubble to the body
                 document.body.appendChild(bubble);
             }
         }
@@ -302,7 +324,7 @@
             document.getElementById('statusModal').classList.remove('active');
         }
 
-        // Create 60 bubbles
+        // Create 60 bubbles for the animated background
         createBubbles(60);
     </script>
 </body>

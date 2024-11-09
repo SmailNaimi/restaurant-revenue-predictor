@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Restaurant Revenue - About</title>
+    <title>Restaurant Revenue - Team</title>
+    <!--logo favicon-->
+    <link rel="icon" href="static/logo.png" type="image/x-icon">
 
     <!-- Link to Montserrat font from Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
@@ -16,15 +18,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
+        /* Basic styling for body element */
         body {
-            font-family: 'Source Code Pro', monospace;
-            color: #333;
+            font-family: 'Source Code Pro', monospace; /* Set the font style */
+            color: #333; /* Set the text color */
             margin: 0;
             padding: 0;
-            background: #333;
+            background: #333; /* Set background color */
             min-height: 100vh;
             width: 100vw;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
@@ -40,14 +43,14 @@
         /* Bubble Style */
         .bubble {
             position: absolute;
-            background-color: #fca14ccc;
-            border-radius: 50%;
+            background-color: #fca14ccc; /* Semi-transparent orange color */
+            border-radius: 50%; /* Make the bubble circular */
             opacity: 0.7;
-            animation-timing-function: ease-in-out;
-            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out; /* Smooth start and end animation */
+            animation-iteration-count: infinite; /* Repeat animation indefinitely */
         }
 
-        /* Keyframes for different animations */
+        /* Keyframes for different animations to create random bubble movements */
         @keyframes float1 {
             0% { transform: translate(0, 0); }
             50% { transform: translate(50vw, -50vh); }
@@ -87,7 +90,7 @@
             z-index: 1000;
         }
         .nav a {
-            color: #ff7a00;
+            color: #ff7a00; /* Orange color for navigation links */
             font-size: 1.2rem;
             text-decoration: none;
             font-weight: 440;
@@ -96,11 +99,11 @@
             cursor: pointer;
         }
         .nav a:hover {
-            color: #ffffff;
-            text-shadow: 0px 0px 5px #ff7a00;
+            color: #ffffff; /* White color on hover */
+            text-shadow: 0px 0px 5px #ff7a00; /* Add glow effect on hover */
         }
 
-        /* Hamburger Menu */
+        /* Hamburger Menu for mobile view */
         .hamburger {
             display: none;
             font-size: 2rem;
@@ -114,11 +117,12 @@
             gap: 20px;
         }
 
+        /* Media query to change nav menu style for smaller screens */
         @media (max-width: 768px) {
             .nav-menu {
                 display: none;
                 flex-direction: column;
-                background: rgba(0, 0, 0, 0.8);
+                background: rgba(0, 0, 0, 0.8); /* Transparent black background */
                 position: absolute;
                 top: 60px;
                 left: 0;
@@ -126,13 +130,13 @@
                 padding: 20px;
             }
             .nav-menu.active {
-                display: flex;
+                display: flex; /* Show menu when active */
             }
             .hamburger {
-                display: block;
+                display: block; /* Show hamburger icon on small screens */
             }
             .hamburger.active {
-                transform: rotate(180deg);
+                transform: rotate(180deg); /* Rotate icon on active state */
                 color: #ffffff;
                 text-shadow: 0px 0px 10px #ff7a00;
             }
@@ -147,23 +151,23 @@
             gap: 50px;
             z-index: 10;
             width: max-content;
-            animation: fadeIn 1s ease-out forwards;
+            animation: fadeIn 1s ease-out forwards; /* Apply fade-in animation */
         }
         .circle-item {
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out; /* Add zoom effect on hover */
         }
         .circle-item:hover {
-            transform: scale(1.1);
+            transform: scale(1.1); /* Zoom in the circle on hover */
         }
         .circle {
             width: 270px;
             height: 270px;
-            border-radius: 50%;
+            border-radius: 50%; /* Make the image circular */
             overflow: hidden;
-            box-shadow: 0px 0px 15px 5px #ff7a00;
+            box-shadow: 0px 0px 15px 5px #ff7a00; /* Add glowing effect */
             position: relative;
             display: flex;
             align-items: center;
@@ -172,7 +176,7 @@
         .circle img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: cover; /* Make sure the image covers the circle */
         }
         .profile-info {
             text-align: center;
@@ -192,15 +196,15 @@
         }
 
         .profile-info .fab {
-            color: #0072b1;
+            color: #0072b1; /* LinkedIn color for the icon */
             margin-right: 9px;
         }
         .profile-info :hover {
             color: #ffffff;
-            text-shadow: 0px 0px 5px #ff7a00;
+            text-shadow: 0px 0px 5px #ff7a00; /* Add glow effect on hover */
         }
 
-        /* Title styling */
+        /* Title styling with horizontal lines */
         .title-container {
             display: flex;
             align-items: center;
@@ -231,31 +235,31 @@
             flex-direction: column;
             gap: 15px;
             width: 90%;
-            max-width: 450px; /* Taille maximale pour éviter qu'il devienne trop grand */
-            padding: 20px; /* Réduction du padding global */
-            background-color: #444;
+            max-width: 450px; /* Maximum size to avoid becoming too large */
+            padding: 20px;
+            background-color: #444; /* Dark gray background */
             box-shadow: 0px 0px 15px 5px #ff7a00;
             border-radius: 10px;
-            margin: 20px auto; /* Réduction de la marge pour limiter l'espace */
+            margin: 20px auto;
             position: relative;
             box-sizing: border-box;
         }
         .contact-form input, .contact-form textarea {
-            padding: 10px; /* Réduction du padding pour chaque champ */
+            padding: 10px;
             font-size: 1rem;
-            border-radius: 5px; /* Réduction de la courbure pour un look plus compact */
+            border-radius: 5px;
             border: none;
             outline: none;
-            width: 100%; /* Toujours occuper 100% du conteneur parent */
-            box-sizing: border-box; /* Inclure le padding dans la largeur */
+            width: 100%;
+            box-sizing: border-box;
         }
         .contact-form textarea {
-            resize: vertical;
+            resize: vertical; /* Allow vertical resizing */
         }
         .contact-form button {
-            padding: 12px; /* Réduction du padding du bouton */
-            font-size: 1rem; /* Réduction de la taille de la police */
-            background-color: #ff7a00;
+            padding: 12px;
+            font-size: 1rem;
+            background-color: #ff7a00; /* Button color */
             color: #fff;
             border: none;
             border-radius: 5px;
@@ -263,9 +267,10 @@
             position: relative;
         }
         .contact-form button:hover {
-            background-color: #ff8c00;
+            background-color: #ff8c00; /* Change button color on hover */
         }
 
+        /* Adjustments for smaller screen sizes */
         @media (max-width: 768px) {
             .circle-container {
                 padding: 50px;
@@ -276,16 +281,16 @@
             }
             .circle {
                 width: 200px;
-                height: 200px;
+                height: 200px; /* Smaller circles for smaller screens */
             }
             .contact-form {
                 width: 90%;
-                padding: 15px; /* Réduction du padding sur les petits écrans */
+                padding: 15px; /* Reduced padding on smaller screens */
                 margin: 20px auto;
                 box-sizing: border-box;
             }
             .contact-form input, .contact-form textarea {
-                padding: 10px; /* Réduction du padding des champs */
+                padding: 10px;
                 font-size: 0.9rem;
             }
             .contact-form button {
@@ -304,16 +309,16 @@
             }
             .circle {
                 width: 150px;
-                height: 150px;
+                height: 150px; /* Even smaller circles for very small screens */
             }
             .contact-form {
                 width: 95%;
-                padding: 10px; /* Moins de padding pour mieux tenir sur les petits écrans */
+                padding: 10px; /* Less padding to fit smaller screens */
                 margin: 20px auto;
                 box-sizing: border-box;
             }
             .contact-form input, .contact-form textarea {
-                padding: 8px; /* Réduction du padding des champs */
+                padding: 8px;
                 font-size: 0.85rem;
             }
             .contact-form button {
@@ -323,6 +328,7 @@
         }
     </style>
     <script>
+        // Function to show a success message when the form is submitted
         function showSuccessMessage() {
             const successMessage = document.getElementById('success-message');
             successMessage.style.display = 'block';
@@ -331,6 +337,7 @@
             document.querySelector('.contact-form').reset();
         }
 
+        // Function to toggle the hamburger menu visibility
         function toggleMenu() {
             const navMenu = document.querySelector('.nav-menu');
             const hamburger = document.querySelector('.hamburger');
@@ -344,19 +351,20 @@
     <!-- Navbar Links Only -->
     <div class="nav">
         <div class="hamburger" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+            <i class="fas fa-bars"></i> <!-- Hamburger icon -->
         </div>
         <div class="nav-menu">
             <a href="/">Home</a>
             <a href="About">About</a>
             <a>Team</a>
             <a href="/APIhealth">API Status</a>
-            <a href="https://github.com/SmailNaimi" target="_blank">GitHub</a>
+            <a href="https://github.com/SmailNaimi/restaurant-revenue-predictor" target="_blank">GitHub</a>
         </div>
     </div>
 
     <!-- JavaScript to add titles dynamically -->
     <script>
+        // Function to create section titles with lines on either side
         function createSectionTitle(text) {
             const titleContainer = document.createElement('div');
             titleContainer.classList.add('title-container');
@@ -375,7 +383,7 @@
             titleContainer.appendChild(titleText);
             titleContainer.appendChild(lineRight);
 
-            document.body.appendChild(titleContainer);
+            document.body.appendChild(titleContainer); // Add title to the page
         }
 
         // Create the "Project Creators" title above the circle container
@@ -395,52 +403,52 @@
         });
     </script>
 
-    <!-- Circles with Images -->
+    <!-- Circles with Images representing team members -->
     <div class="circle-container">
         <div class="circle-item">
             <div class="circle">
-                <img src="static/smail.jpg" alt="Circle Image 1">
+                <img src="static/smail.jpg" alt="Circle Image 1"> <!-- Team member image -->
             </div>
             <div class="profile-info">
                 <a href="https://www.linkedin.com/in/ismail-naimi-3a0a082b4/" target="_blank">
-                    <i class="fab fa-linkedin"></i> ISMAIL NAIMI
+                    <i class="fab fa-linkedin"></i> ISMAIL NAIMI <!-- LinkedIn profile link -->
                 </a>
             </div>
         </div>
         <div class="circle-item">
             <div class="circle">
-                <img src="static/yahya.jpg" alt="Circle Image 2">
+                <img src="static/yahya.jpg" alt="Circle Image 2"> <!-- Team member image -->
             </div>
             <div class="profile-info">
                 <a href="https://www.linkedin.com/in/yahya-daif-1ba41a284/" target="_blank">
-                    <i class="fab fa-linkedin"></i> YAHYA DAIF
+                    <i class="fab fa-linkedin"></i> YAHYA DAIF <!-- LinkedIn profile link -->
                 </a>
             </div>
         </div>
         <div class="circle-item">
             <div class="circle">
-                <img src="static/anouar.jpg" alt="Circle Image 3">
+                <img src="static/anouar.jpg" alt="Circle Image 3"> <!-- Team member image -->
             </div>
             <div class="profile-info">
                 <a href="https://www.linkedin.com/in/anouar-ouhannou-b9b2b1286/" target="_blank">
-                    <i class="fab fa-linkedin"></i> ANOUAR OUHANNOU
+                    <i class="fab fa-linkedin"></i> ANOUAR OUHANNOU <!-- LinkedIn profile link -->
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- Contact Form -->
+    <!-- Contact Form for user messages -->
     <form class="contact-form" action="/send-message" method="POST" onsubmit="showSuccessMessage(); return false;">
         <input type="text" name="name" placeholder="Your Name" required>
         <input type="email" name="email" placeholder="Your Email" required>
         <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
         <button type="submit">Send Message</button>
-        <div id="success-message" class="success-message" style="display: none; color: #ff7a00; text-align: center; margin-top: 15px;">Message sent successfully!</div>
+        <div id="success-message" class="success-message" style="display: none; color: #ff7a00; text-align: center; margin-top: 15px;">Message sent successfully!</div> <!-- Success message after form submission -->
     </form>
 
     <!-- JavaScript for Bubble Creation and Button Actions -->
     <script>
-        // Function to create random bubbles
+        // Function to create random bubbles for the page background
         function createBubbles(number) {
             const animations = ['float1', 'float2', 'float3', 'float4', 'float5'];
 
@@ -469,7 +477,7 @@
             }
         }
 
-        // Create 60 bubbles
+        // Create 60 bubbles for the page background
         createBubbles(60);
     </script>
 </body>
