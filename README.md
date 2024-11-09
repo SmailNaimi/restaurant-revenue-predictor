@@ -18,7 +18,6 @@ This application predicts monthly revenue for restaurants based on various input
 - [🔄 Data Flow Explanation](#-data-flow-explanation)
 - [🧐 Model Explanation](#-model-explanation)
 - [🛠️ Troubleshooting](#%EF%B8%8F-troubleshooting)
-- [📜 License](#-license)
 - [📞 Contact](#-contact)
 
 ## 📚 Overview
