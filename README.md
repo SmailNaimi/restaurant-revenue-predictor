@@ -87,7 +87,7 @@ Once the model has been trained, you can start the Flask web application by runn
 ```bash
 python app.py
 ```
-By default, the application will be accessible at [http://127.0.0.1:5000](http://127.0.0.1:5000). 🌐
+By default, the application will be accessible at [http://127.0.0.1:5000](http://127.0.0.1:8080). 🌐
 
 ### 3. Testing the Application
 
